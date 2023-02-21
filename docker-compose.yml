@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  firsthop:
+    build: apps/backendservice_firsthop
+    env_file: apps/backendservice_firsthop/.env
+    container_name: firsthop
+    ports:
+      - "3001:3001"
+    depends_on:
+      - secondhop
+    networks:
+      - my-proxy-net
+  secondhop:
+    build: apps/backendservice_secondhop
+    env_file: apps/backendservice_secondhop/.env
+    container_name: secondhop
+    ports:
+      - "3002:3002"
+    networks:
+      - my-proxy-net
+networks:
+  my-proxy-net:
+    name: local_network
+    driver: bridge

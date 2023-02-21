@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "scheme": "acme",
+    "web": {
+      "bundler": "metro"
+    },
+    "name": "native",
+    "slug": "native",
+    "ios": {
+      "bundleIdentifier": "com.anonymous.native"
+    },
+    "splash": {
+      "image": "./assets/splash.png",
+      "backgroundColor": "#333"
+    }
+  }
+}

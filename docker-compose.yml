@@ -1,6 +1,14 @@
 version: "3"
 
 services:
+  express:
+    build: apps/express
+    env_file: apps/express/.env
+    container_name: express
+    ports:
+      - "3000:3000"
+    networks:
+      - local_network
   firsthop:
     build: apps/backendservice_firsthop
     env_file: apps/backendservice_firsthop/.env
@@ -8,9 +16,10 @@ services:
     ports:
       - "3001:3001"
     depends_on:
+      - express
       - secondhop
     networks:
-      - my-proxy-net
+      - local_network
   secondhop:
     build: apps/backendservice_secondhop
     env_file: apps/backendservice_secondhop/.env
@@ -18,8 +27,7 @@ services:
     ports:
       - "3002:3002"
     networks:
-      - my-proxy-net
+      - local_network
 networks:
-  my-proxy-net:
-    name: local_network
-    driver: bridge
+  local_network:
+    driver: host

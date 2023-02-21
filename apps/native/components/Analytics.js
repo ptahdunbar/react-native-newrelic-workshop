@@ -9,7 +9,6 @@ export default () => {
   const pathname = usePathname();
   const params = useSearchParams();
 
-  console.log('NEW_RELIC_LICENSE_KEY', NEW_RELIC_LICENSE_KEY)
   newrelic.startAgent(NEW_RELIC_LICENSE_KEY);
   newrelic.setJSAppVersion(version);
 
